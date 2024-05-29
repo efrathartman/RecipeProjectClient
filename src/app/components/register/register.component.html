@@ -1,0 +1,52 @@
+<p>register works!</p>
+<form ngForm #myForm="ngForm" (ngSubmit)="addUser(myForm)">
+<div class="example-container"> 
+
+
+<mat-form-field class="example-full-width">
+    <mat-label>שם משתמש</mat-label>
+    <input matInput name="username" 
+    ngModel #usernameModel="ngModel" pattern="^[a-zA-Zא-ת\s]+$" required >
+    <mat-error *ngIf="usernameModel.getError('required')">שדה חובה</mat-error>
+    <mat-error *ngIf="usernameModel.getError('pattern')">שדה חייב להיות מסוג מחרוזת </mat-error>
+  </mat-form-field>
+<br/>
+<mat-form-field>
+    <mat-label>מייל</mat-label>
+    <input  matInput
+           ngModel
+           #emailModel="ngModel"
+           name="email"
+           placeholder="pat@example.com"      
+           pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$"
+           required>
+    <mat-error *ngIf="usernameModel.getError('required')">מייל לא חוקי     </mat-error>
+    <mat-error *ngIf="usernameModel.getError('email')">מייל לא חוקי     </mat-error>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="example-full-width">
+    <mat-label>סיסמא </mat-label>
+    <input matInput name="password" minlength="4" maxlength="10"  pattern="(?=.*[a-zA-Z])(?=.*[0-9]).+$" ngModel #passwordModel="ngModel" required>
+    <mat-error *ngIf="passwordModel.getError('minlength')">הסיסמה חייבת להכיל לפחות ארבעה תווים </mat-error>
+    <mat-error *ngIf="passwordModel.getError('maxlength')">הסיסמה חייבת להכיל לפחות ארבעה תווים</mat-error>
+    <mat-error *ngIf="passwordModel.getError('required')">שדה חובה</mat-error>
+    <mat-error *ngIf="passwordModel.getError('pattern')">הסיסמה חייבת להכיל לפחות ספרה אחת ואות אחת </mat-error>
+  </mat-form-field>
+  <br/>
+<mat-form-field class="example-full-width">
+    <mat-label>כתובת</mat-label>
+    <input matInput name="address" pattern="^[a-zA-Zא-ת0-9\s]+$" ngModel #addressModel="ngModel" required>
+    <mat-error *ngIf="addressModel.getError('required')">שדה חובה</mat-error>
+    <mat-error *ngIf="addressModel.getError('pattern')">שדה חייב להיות מסוג מחרוזת </mat-error>
+  </mat-form-field>
+
+<div class="example-button-row" >
+    <button mat-raised-button color="primary" >הרשמה</button>
+    
+  </div>
+ 
+  </div>
+<!-- <button mat-raised-button color="primary" (click)="addUser(username,email,password,address,role)">הרשם</button> -->
+</form>
+<!-- <button (click)="register(email, password)">login</button> -->
+

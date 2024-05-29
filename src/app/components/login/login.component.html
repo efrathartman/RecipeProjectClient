@@ -1,0 +1,46 @@
+<form ngForm #myForm="ngForm" (ngSubmit)="login(myForm)">
+<div class="example-container">
+    <mat-form-field>
+      <mat-label>מייל</mat-label>
+      <input  matInput
+             ngModel
+             #emailModel="ngModel"
+             name="email"
+             placeholder="pat@example.com"
+         
+             pattern=".+@.+\..+"
+             required>
+      @if (email.invalid) {
+        <mat-error>{{errorMessage}}</mat-error>
+      }
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+    <mat-label>Enter your password</mat-label>
+    <input name="password" ngModel #passwordModel="ngModel" matInput [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <section>
+    <div class="example-label"></div>
+    <div class="example-button-row" >
+      <button mat-raised-button color="primary" >התחברות</button>   
+    </div>
+  </section>
+  <div *ngIf="errorMessage">
+    <mat-error>{{erroruser }}</mat-error>
+  </div>
+
+  </div>
+  <button mat-raised-button style="margin-right: 10px;" color="primary" (click)="register(myForm)">הרשמה</button>
+</form>
+  
+  
+
+  
+
+  
+
+  
+  
