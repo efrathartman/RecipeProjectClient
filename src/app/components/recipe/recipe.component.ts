@@ -4,6 +4,7 @@ import { RecipeService } from '../../shared/services/recipe.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { Recipe } from '../../shared/models/recipe';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,5 +17,16 @@ import { Recipe } from '../../shared/models/recipe';
 export class RecipeComponent {
   @Input('oneItem')
   recipe: Recipe = {}
-
+  id:number | undefined
+  constructor(private router:Router)
+  {
+    
+  }
+  moreDetails(id:number|undefined)
+  {
+    this.id=id;
+    console.log(this.id,"id");
+    this.router.navigate(['/recipeDetails',id]);
+  }
+ 
 }

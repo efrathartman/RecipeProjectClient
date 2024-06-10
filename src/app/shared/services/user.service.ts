@@ -23,6 +23,10 @@ export class UserService {
   public set token(token:string|null){
     if(token)
       localStorage.setItem('mytoken',token)
+    else {
+      localStorage.removeItem('mytoken');
+    }
+
   }
   getAllUsers(){
     return this.http.get<User[]>(this.usersUrl)
@@ -35,6 +39,6 @@ export class UserService {
   }
 
   addUser(u: User){
-    return this.http.post<{user:User;token:string}>(`${this.usersUrl}/signUp`,u)
+    return this.http.post<{user:User;token:string}>(`${this.usersUrl}/signup`,u)
   }
 }

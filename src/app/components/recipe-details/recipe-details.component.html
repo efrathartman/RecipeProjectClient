@@ -1,0 +1,93 @@
+<p>recipe-details works!</p>
+<mat-card class="my-card">
+<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba1.jpg" style="width: 15pc ;" alt="img of recipe">
+<mat-card-header> 
+    <mat-card-title>{{foundRecipe.recipename}}</mat-card-title>
+</mat-card-header>
+<mat-card-content>
+    <mat-list-item>
+        {{foundRecipe.description}}:תאור  <mat-icon>description</mat-icon>
+    </mat-list-item>
+    <mat-list-item>
+ זמן הכנה: {{foundRecipe.timeOfMinutes | preparationTime}} <mat-icon> access_alarms</mat-icon>
+    </mat-list-item>
+        @for(l of foundRecipe.layersOfCake;track l)
+        {
+            <p>
+                {{l.description}}: תאור שכבה  <mat-icon>description</mat-icon>
+            </p>
+            <ul>
+                מצרכים  <mat-icon>shopping_cart</mat-icon>
+            @for(i of l.ingredients;track i)
+            {
+                <li>
+                    {{i}}
+                </li>
+            }
+            </ul>
+        }
+        <mat-list-item>
+            {{foundRecipe.instructions}}:הוראות  <mat-icon>toc</mat-icon>
+        </mat-list-item>
+        <mat-list-item [appStar]="foundRecipe.level ?? 0"> רמת קושי  </mat-list-item>
+        
+        <h3>קטגוריות</h3>
+        @for(c of foundRecipe.categories; track c)
+        {
+
+            <div>{{c.categoryName}}</div>
+        }
+        <mat-list-item>
+            {{foundRecipe.dataAdd}}:תאריך העלה  <mat-icon>today</mat-icon>
+        </mat-list-item>
+</mat-card-content>
+<!-- <h1>שכבות</h1>
+  @for(l of foundRecipe.layersOfCake;track l)
+  {
+    <h2>תיאור שכבה</h2>
+    <div>{{l.description}}</div>
+    <h2>מצרכים </h2>
+ 
+    @for(i of l.ingredients;track i)
+    {
+        <li>{{i}}</li>
+    }
+  } -->
+<!-- <h1>הוראות</h1>
+<div>{{foundRecipe.instructions}}</div>
+
+<h1> רמת קושי </h1>
+<div [appStar]="foundRecipe.level ?? 0"></div>
+<h1> קטגוריות</h1>
+@for(c of foundRecipe.categories; track c)
+{
+    <div>{{c.categoryName}}</div>
+}
+
+<h1>תאריך העלה</h1>
+<div>{{foundRecipe.dataAdd}}</div>
+<button  (click)="deleteRecipe(foundRecipe._id)">מחיקה</button>
+</mat-card>
+
+<mat-card class="my-card">
+    <mat-card-header>
+      <mat-card-title>כותרת הכרטיס</mat-card-title>
+      <mat-card-subtitle>תת כותרת הכרטיס</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>תוכן הכרטיס</p>
+      <mat-list>
+        <mat-list-item>
+          <mat-icon>person</mat-icon> שם: {{foundRecipe.recipename}}
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>email</mat-icon> דוא"ל: {{foundRecipe.description}}
+        </mat-list-item>
+      
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>פעולה 1</button>
+      <button mat-button>פעולה 2</button>
+    </mat-card-actions>
+  </mat-card> -->

@@ -8,7 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { state } from '@angular/animations';
 import { User } from '../../shared/models/user';
@@ -63,9 +63,17 @@ export class LoginComponent {
 
 register(form:NgForm)
 {
-  this.moveToSignUpEvent.emit({email: form.value.email,password:form.value.password});
-  this.router.navigate(['/register']);
-}
+  console.log("here");
+  const email = form.value.email;
+  const password = form.value.password;
+  const navigationExtras: NavigationExtras = {
+    state: { email, password }
+  };
+    this.router.navigate(['/register'], navigationExtras);
+    console.log(navigationExtras);
+  }
+ 
+
   updateErrorMessage() {
     if (this.email.hasError('required')) {
       this.errorMessage = 'שדה חובה';
@@ -75,6 +83,7 @@ register(form:NgForm)
       this.errorMessage = '';
     }
   }
+
   // onSubmit(form: NgForm) {
   //   console.log('form');
   //   console.log(form);

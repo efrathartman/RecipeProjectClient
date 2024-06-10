@@ -15,4 +15,8 @@ export class CategoryService {
     
      return this.http.get<Category[]>(this.categoryUrl)
   }
+  getAllCategoryByRecipes(name: string) {
+    return this.http.get<Category>(`${this.categoryUrl}/getAllCategoryByRecipes/${name}`);
+  }
+
 }

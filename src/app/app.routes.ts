@@ -5,6 +5,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { Recipe } from './shared/models/recipe';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { AllRecipesComponent } from './components/all-recipes/all-recipes.component';
+import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { inject } from '@angular/core';
+import { UserService } from './shared/services/user.service';
+import { authGuard } from './shared/guards/auth.guard';
+
 
 export const routes: Routes = [
     
@@ -12,6 +18,10 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'allrecipe', component: AllRecipesComponent },
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'recipeform', component: RecipeFormComponent,canActivate:[authGuard] },
+    { path: 'recipeDetails/:id', component: RecipeDetailsComponent },
+    // { path: '', redirectTo: '/login', pathMatch: 'full' },
+    // { path:'signup', component:RegisterComponent}
+  
 
 ];

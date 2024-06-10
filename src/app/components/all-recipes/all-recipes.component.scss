@@ -1,0 +1,26 @@
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* למרחק שווה בין ה-card */
+    // flex: 1; /* שתי ה-divs יהיו באותה רוחב */
+   
+  }
+  
+  .example-card {
+    flex: 0 1 calc(33.33% - 16px); /* 33.33% רוחב עם מרווח בין ה-card */
+    margin-bottom: 16px; /* מרווח בין ה-card */
+  }
+  .select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;/* יישור לצד ימין */
+    // flex: 1; /* שתי ה-divs יהיו באותה רוחב */
+    padding: 20px;
+  }
+  .allThem{
+    // display: flex;
+    display: grid;
+    grid-template-columns: 4fr 1fr ; /* שני עמודות עם רוחב שווה */
+    gap: 10px; 
+  }

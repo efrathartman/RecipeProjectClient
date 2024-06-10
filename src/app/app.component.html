@@ -1,24 +1,50 @@
 
 <!-- <app-login></app-login> -->
-<nav>
-    <ul>
+
+
+    <mat-tab-group animationDuration="200ms" >
+        <mat-tab label="login">
+            <ng-template mat-tab-label>
+                <a routerLink="login" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">login</a>
+              </ng-template>
+             
+        </mat-tab>
+        <mat-tab label="register">
+            <ng-template mat-tab-label>
+                <a routerLink="register" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">register</a>
+              </ng-template>
+             
+        </mat-tab>
+        <mat-tab label="allrecipe">
+            <ng-template mat-tab-label>
+                <a routerLink="allrecipe" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">allrecipe</a>
+              </ng-template>
+        </mat-tab>
+        <mat-tab label="allrecipe">
+            <ng-template mat-tab-label *ngIf="userService.token">
+                    <a routerLink="recipeform" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">recipeForm</a>
+                
+              </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    <!-- <ul>
 
         <li><a routerLink="login">login</a></li>
         <li><a routerLink="register">register</a></li>
         <li><a routerLink="allrecipe">recipe</a></li>
        
         @if(userService.token){ 
-      
+        
             <li><a routerLink="home">home</a></li>
         }
 
     
-    </ul>
-</nav>
+    </ul> -->
+
 <router-outlet></router-outlet>
 
 <!-- <app-login (moveToSignUpEvent)="onMoveToSignUp($event)"></app-login> -->
-<router-outlet (activate)="onActivate($event)" ></router-outlet>
+<!-- <router-outlet (activate)="onActivate($event)" ></router-outlet> -->
 <!-- <nav class="navBar">
  
     <a routerLink="home">

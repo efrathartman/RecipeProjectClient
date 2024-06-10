@@ -8,18 +8,21 @@ import { CommonModule } from '@angular/common';
 import { User } from './shared/models/user';
 import { routes } from './app.routes';
 import { FormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
+import { authGuard } from './shared/guards/auth.guard';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LoginComponent,HomeComponent,HttpClientModule,RouterModule,CommonModule],
+  imports: [RouterOutlet,LoginComponent,HomeComponent,HttpClientModule,RouterModule,CommonModule,MatTabsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  
   
 })
 export class AppComponent {
   
-  constructor(private router: Router,private userDataService: UserService) {}
+  constructor(private router: Router,public usersService: UserService) {}
 
   title = 'Recipes';
   userService = inject(UserService); 
@@ -27,6 +30,7 @@ export class AppComponent {
   //   console.log('Received data:', data);
   //   // כאן תוכל לטפל בנתונים איך שאתה רוצה
   // }
+ 
   onActivate(component: any) {
     
     if (component instanceof LoginComponent) {
