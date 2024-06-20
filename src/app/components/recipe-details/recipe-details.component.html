@@ -1,4 +1,4 @@
-<p>recipe-details works!</p>
+<!-- <p>recipe-details works!</p>
 <mat-card class="my-card">
 <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba1.jpg" style="width: 15pc ;" alt="img of recipe">
 <mat-card-header> 
@@ -41,6 +41,7 @@
             {{foundRecipe.dataAdd}}:תאריך העלה  <mat-icon>today</mat-icon>
         </mat-list-item>
 </mat-card-content>
+<button  (click)="deleteRecipe(foundRecipe._id)">מחיקה</button> -->
 <!-- <h1>שכבות</h1>
   @for(l of foundRecipe.layersOfCake;track l)
   {
@@ -91,3 +92,113 @@
       <button mat-button>פעולה 2</button>
     </mat-card-actions>
   </mat-card> -->
+  <!-- <div style="display: flex; justify-content: center; align-items: center; margin-top: 2pc;    margin-right: 15pc; ">
+    <mat-card class="my-card" style="width: 600px;display: flex;flex-direction: row-reverse; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);border:2px solid rgb(19, 249, 237)">
+     
+      <div style="flex: 1; border-radius: 10px 0 0 10px;">
+        <img mat-card-image src={{foundRecipe.img}} style="width: 230%; height: 101%; border-radius: 10px 10px 10px;margin-top: -2px;border:3px solid rgb(19, 249, 237)" alt="img of recipe">
+      </div>
+      <div style="flex: 2; padding: 20px;">
+        <mat-card-header style="text-align: center;margin-left: 50%; ">
+            <mat-card-title style="font-size: larger; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;" >{{foundRecipe.recipename}}</mat-card-title>
+        </mat-card-header>
+        <br/>
+        <mat-card-content style=" text-align: right;">
+            <mat-list-item>{{foundRecipe.description}}:תאור </mat-list-item>
+            <br/>
+            <mat-list-item> {{ foundRecipe.timeOfMinutes | preparationTime }} </mat-list-item>
+            
+            @for(l of foundRecipe.layersOfCake; track l)
+            {
+                <p>
+                    {{l.description}}:תאור שכבה
+                </p>
+                
+                  : רכיבים
+                    <br/>
+                    @for(i of l.ingredients; track i)
+                    {
+                      {{i }}  <mat-icon>minimize</mat-icon>
+                        
+                        <br/>
+                    }
+               
+            }
+            <br/>
+            <mat-list-item>{{foundRecipe.instructions}}: הוראות</mat-list-item>
+            <br/>
+           
+         <mat-list-item [appStar]="foundRecipe.level ?? 0"></mat-list-item>
+          <br/>
+          <br/>
+            מכיל קטגוריות
+            <br/>
+            @for(c of foundRecipe.categories; track c)
+            {
+                {{c.categoryName}}<mat-icon>minimize</mat-icon>
+                <br/>
+            }
+            <br/>
+            <mat-list-item>{{foundRecipe.dataAdd}}: הועלה בתאריך </mat-list-item>
+        </mat-card-content>    
+    </div>
+    </mat-card>
+  </div>
+    <button *ngIf="isEnabaled" style="width: 54.5%; padding: 10px; background-color: rgb(19, 249, 237); color: #fff; border: none;  cursor: pointer;margin-top: -4px; margin-left: 22.8%;" (click)="deleteRecipe(foundRecipe._id)">מחיקה</button>
+  <div>
+  </div> -->
+  <div class="recipe-card-container">
+    <mat-card class="recipe-card">
+      <img mat-card-image [src]="foundRecipe.img" alt="img of recipe">
+      <div class="recipe-card-content">
+        <mat-card-header class="recipe-card-title">
+     
+           <mat-card-title style="font-size: x-large;
+           font-family: auto;
+           margin-left: 17pc;
+           font-weight: bold;">{{foundRecipe.recipename}}</mat-card-title>
+
+        </mat-card-header>
+        <br/>
+        <mat-card-content>
+          <mat-list-item>{{foundRecipe.description}}: תאור</mat-list-item>
+          <br/>
+          <mat-list-item>{{foundRecipe.timeOfMinutes | preparationTime}}</mat-list-item>
+          
+          <div *ngFor="let l of foundRecipe.layersOfCake">
+            <p>{{l.description}}: תאור שכבה</p>
+            : רכיבים
+            <br/>
+            <div *ngFor="let i of l.ingredients">
+              {{i}} <mat-icon>minimize</mat-icon>
+              <br/>
+            </div>
+          </div>
+          <br/>
+          <mat-list-item>{{foundRecipe.instructions}}: הוראות</mat-list-item>
+          <br/>
+          <mat-list-item [appStar]="foundRecipe.level ?? 0"></mat-list-item>
+          <br/>
+          <br/>
+          מכיל קטגוריות
+          <br/>
+          <div *ngFor="let c of foundRecipe.categories">
+            {{c.categoryName}} <mat-icon>minimize</mat-icon>
+            <br/>
+          </div>
+          <br/>
+          <mat-list-item>{{foundRecipe.dataAdd}}: הועלה בתאריך</mat-list-item>
+        </mat-card-content>
+        <button *ngIf="isEnabaled" class="delete-button" (click)="deleteRecipe(foundRecipe._id)">מחיקה</button>
+      </div>
+    </mat-card>
+  </div>
+  
+
+  
+
+
+
+
+
+

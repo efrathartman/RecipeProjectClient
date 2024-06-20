@@ -1,26 +1,98 @@
-.example-container mat-form-field + mat-form-field {
-    margin-left: 8px;
-  }
-  .example-container {
-    direction: rtl;
-    text-align: right;
-    margin-right: 40%;
+// .example-container mat-form-field + mat-form-field {
+//     margin-left: 8px;
+//   }
+//   .example-container {
+//     direction: rtl;
+//     text-align: right;
+//     margin-right: 40%;
 
-  }
-  .example-container mat-form-field + mat-form-field {
-    margin-left: 8px;
-  }
+//   }
+//   .example-container mat-form-field + mat-form-field {
+//     margin-left: 8px;
+//   }
   
-  .example-right-align {
-    text-align: right;
-    margin-left: 40px;
-    margin-right: 40px;
-  }
+//   .example-right-align {
+//     text-align: right;
+//     margin-left: 40px;
+//     margin-right: 40px;
+//   }
   
-  input.example-right-align::-webkit-outer-spin-button,
-  input.example-right-align::-webkit-inner-spin-button {
-    display: none;
-  }
+//   input.example-right-align::-webkit-outer-spin-button,
+//   input.example-right-align::-webkit-inner-spin-button {
+//     display: none;
+//   }
  
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #3a3a3a;
+}
 
-  
+.example-container {
+  direction: rtl;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+ 
+  align-items: flex-start; 
+  height: 100vh;
+  padding-top: 5Pc; 
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  // background-color: #f5f5f5;
+  background-color: rgba(245, 245, 245, 0.9); /* שינוי רקע לשקוף */
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+mat-error {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+.mat-mdc-raised-button.mat-accent {
+  --mdc-protected-button-container-color: #3f51b5;
+  --mdc-protected-button-label-text-color: white;
+  --mat-protected-button-state-layer-color: white;
+  --mat-protected-button-ripple-color: rgba(255, 255, 255, 0.1);
+}

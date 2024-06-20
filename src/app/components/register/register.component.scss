@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #3a3a3a;
+  }
+  
+  .example-container {
+    direction: rtl;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* לשנות מ-center ל-flex-start */
+    height: 100vh;
+    padding-top: 2Pc; /* הוספת מרווח בחלק העליון */
+  }
+  
+  .register-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: rgba(245, 245, 245, 0.9); /* שינוי רקע לשקוף */
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px; /* מרווח בין השדות */
+  }
+  
+  mat-card-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-start; /* העברת הכפתור לצד שמאל */
+
+    margin-top: 20px;
+  }
+  
+  mat-error {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-right-align {
+    text-align: right;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  

@@ -1,8 +1,7 @@
 
 <!-- <app-login></app-login> -->
-
-
-    <mat-tab-group animationDuration="200ms" >
+    <!-- 11<mat-tab-group animationDuration="200ms" > -->
+        <!-- <ng-container *ngIf="check()">
         <mat-tab label="login">
             <ng-template mat-tab-label>
                 <a routerLink="login" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">login</a>
@@ -20,29 +19,59 @@
                 <a routerLink="allrecipe" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">allrecipe</a>
               </ng-template>
         </mat-tab>
+    </ng-container> -->
+    <!-- 10<ng-container >
+        <mat-tab label="login">
+            <ng-template mat-tab-label>
+                <a routerLink="login" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">התחברות</a>
+              </ng-template>
+             
+        </mat-tab>
+        <mat-tab label="register">
+            <ng-template mat-tab-label>
+                <a routerLink="register" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">הרשמה</a>
+              </ng-template>
+             
+        </mat-tab>
         <mat-tab label="allrecipe">
-            <ng-template mat-tab-label *ngIf="userService.token">
-                    <a routerLink="recipeform" style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">recipeForm</a>
-                
+            <ng-template mat-tab-label>
+                <a routerLink="allrecipe"  style="text-decoration: none; color: inherit; color: rgb(19, 249, 237);">כל המתכונים</a>
               </ng-template>
         </mat-tab>
-      </mat-tab-group>
+        <mat-tab label="recipeform" >
+            <ng-template mat-tab-label >
+                 <button *ngIf="userService.token"  routerLink="recipeform" class="transparent-button" >מתכון חדש</button>      
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="recipeform" >
+            <ng-template mat-tab-label >
+                 <button routerLink="allrecipe" [queryParams]="{ myRecipes: 'true' }" class="transparent-button" > המתכונים שלי</button>      
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="allrecipe">
+            <ng-template mat-tab-label>
+          <button *ngIf="userService.token" (click)="leave()" class="transparent-button">התנתקות</button>
+              </ng-template>
+        </mat-tab>     
+        <8mat-tab label="allrecipe">
+            <7ng-template mat-tab-label> -->
+              <!-- <div *ngIf="userService.token" class="profile-container"> -->
+                <!-- <6div *ngIf="userService.token" class="profile-container" class="profile-initial" matTooltip="{{userService.nameuser}}">{{ getInitial(userService.nameuser) }}</div> -->
+                <!-- <span class="profile-name">{{userService.nameuser}}</span> -->
+              <!-- </div> -->
+            <!-- <5/ng-template>
+          <4/mat-tab>
+          
+    <3/ng-container>
+      <2/mat-tab-group> -->
     <!-- <ul>
-
         <li><a routerLink="login">login</a></li>
         <li><a routerLink="register">register</a></li>
-        <li><a routerLink="allrecipe">recipe</a></li>
-       
-        @if(userService.token){ 
-        
-            <li><a routerLink="home">home</a></li>
-        }
-
-    
+        <li><a routerLink="allrecipe">recipe</a></li>  
+            <li><a routerLink="home" *ngIf="!check()">home</a></li>
     </ul> -->
 
-<router-outlet></router-outlet>
-
+<!--1 <router-outlet></router-outlet> -->
 <!-- <app-login (moveToSignUpEvent)="onMoveToSignUp($event)"></app-login> -->
 <!-- <router-outlet (activate)="onActivate($event)" ></router-outlet> -->
 <!-- <nav class="navBar">
@@ -61,3 +90,46 @@
     </a>
 </nav>
 <router-outlet></router-outlet> -->
+<mat-tab-group>
+    <ng-container>
+      <mat-tab label="login">
+        <ng-template mat-tab-label>
+          <a routerLink="login" class="nav-link">התחברות</a>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="register">
+        <ng-template mat-tab-label>
+          <a routerLink="register" class="nav-link">הרשמה</a>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="allrecipe">
+        <ng-template mat-tab-label>
+          <a routerLink="allrecipe" class="nav-link">כל המתכונים</a>
+        </ng-template>
+      </mat-tab>
+      <mat-tab *ngIf="userService.token" label="recipeform">
+        <ng-template mat-tab-label>
+          <button routerLink="recipeform" class="transparent-button">מתכון חדש</button>
+        </ng-template>
+      </mat-tab>
+      <mat-tab *ngIf="userService.token" label="myrecipes">
+        <ng-template mat-tab-label>
+          <button routerLink="allrecipe" [queryParams]="{ myRecipes: 'true' }" class="transparent-button">המתכונים שלי</button>
+        </ng-template>
+      </mat-tab>
+      <mat-tab *ngIf="userService.token" label="logout">
+        <ng-template mat-tab-label>
+          <button (click)="leave()" class="transparent-button">התנתקות</button>
+        </ng-template>
+      </mat-tab>
+      <mat-tab *ngIf="userService.token" label="profile">
+        <ng-template mat-tab-label>
+          <div class="profile-container" matTooltip="{{userService.nameuser}}">
+            {{ getInitial(userService.nameuser) }}
+          </div>
+        </ng-template>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
+  <router-outlet></router-outlet>
+  

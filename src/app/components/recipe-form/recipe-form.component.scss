@@ -1,13 +1,85 @@
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f0f0f0;
+}
+
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 30%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-  .example-additional-selection {
-    opacity: 0.75;
-    font-size: 0.75em;
-  }
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8); /* Transparent background */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  border-radius: 12px; /* Larger border radius */
+  direction: rtl; /* Align form fields to the right */
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 16px; /* Space between form fields */
+  text-align: right;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+.example-container {
+  direction: rtl;
+  text-align: right;
+}
+
+mat-label {
+  display: inline-block; /* Prevent full-width label */
+  width: auto; /* Adjust width to fit content */
+  max-width: 200px; /* Optional: Set a max-width */
+  margin-right: 16px; /* Space between label and input */
+}
+
+.mat-form-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-form-field-infix {
+  width: auto;
+  flex: 1;
+  max-width: 300px; /* Set a maximum width for inputs */
+}
+
+button.submit-button {
+  display: block;
+  margin-right: auto; /* Align button to the left */
+  background-color: #ff4081; /* Custom button color */
+  color:white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button.submit-button:hover {
+  background-color: #ff4081; /* Darker shade on hover */
+}
+.mat-mdc-unelevated-button.mat-primary {
+  --mdc-filled-button-container-color: #ff4081;
+  --mdc-filled-button-label-text-color: white;
+  --mat-filled-button-state-layer-color: white;
+  --mat-filled-button-ripple-color: rgba(255, 255, 255, 0.1);
+}
+button.add-layer-button {
+  display: block;
+  margin-left: auto; /* Align button to the right */
+  background-color: #ff4081; /* Custom button color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button.add-layer-button:hover {
+  background-color:#ff4081 /* Darker shade on hover */
+}

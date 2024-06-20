@@ -1,4 +1,4 @@
-<p>register works!</p>
+<!-- <p>register works!</p>
 <form ngForm #myForm="ngForm" (ngSubmit)="addUser(myForm)">
 <div class="example-container"> 
 
@@ -49,7 +49,108 @@
   </div>
  
   </div>
-<!-- <button mat-raised-button color="primary" (click)="addUser(username,email,password,address,role)">הרשם</button> -->
+
 </form>
-<!-- <button (click)="register(email, password)">login</button> -->
+
+ -->
+<!-- <form ngForm #myForm="ngForm" (ngSubmit)="addUser(myForm)">
+  <div class="example-container">
+    <mat-card class="register-card">
+      <mat-card-header>
+        <mat-card-title> טופס הרשמה</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <mat-label>שם משתמש</mat-label>
+          <input matInput name="username" ngModel #usernameModel="ngModel" pattern="^[a-zA-Zא-ת\s]+$" required>
+          <mat-error *ngIf="usernameModel.getError('required')">שדה חובה</mat-error>
+          <mat-error *ngIf="usernameModel.getError('pattern')">שדה חייב להכיל אותיות בלבד  </mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+          <mat-label>מייל</mat-label>
+          <input matInput [(ngModel)]="state.email" [value]="email" name="email" placeholder="pat@example.com"
+                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$"
+                 required>
+          <mat-error *ngIf="usernameModel.getError('required')">מייל לא חוקי</mat-error>
+          <mat-error *ngIf="usernameModel.getError('email')">מייל לא חוקי</mat-error>
+          <mat-error *ngIf="usernameModel.getError('pattern')">מייל לא חוקי</mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="example-full-width">
+          <mat-label>סיסמא</mat-label>
+          <input matInput name="password" minlength="4" maxlength="20" pattern="(?=.*[a-zA-Z])(?=.*[0-9]).+$"
+                 [(ngModel)]="state.password" #passwordModel="ngModel" required>
+          
+          <mat-error *ngIf="passwordModel.getError('required')">שדה חובה</mat-error>
+          <mat-error *ngIf="passwordModel.getError('pattern')">הסיסמה חייבת להכיל לפחות ספרה אחת ואתיות באנגלית בלבד</mat-error>
+          <mat-error *ngIf="passwordModel.getError('minlength')">הסיסמה חייבת להכיל לפחות ארבעה תווים</mat-error>
+          <mat-error *ngIf="passwordModel.getError('maxlength')">הסיסמה חייבת להכיל עד 20 תווים</mat-error>
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="example-full-width">
+          <mat-label>כתובת</mat-label>
+          <input matInput name="address" pattern="^[a-zA-Zא-ת0-9\s]+$" ngModel #addressModel="ngModel" required>
+          <mat-error *ngIf="addressModel.getError('required')">שדה חובה</mat-error>
+          <mat-error *ngIf="addressModel.getError('pattern')">שדה חייב להיות מסוג מחרוזת</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button style="margin-right: auto;" color="primary" type="submit">הרשמה</button>
+      </mat-card-actions>
+      <div *ngIf="isOk" style="color: red; text-align: left;">משתמש כבר קיים במערכת</div>
+    </mat-card>
+  </div>
+</form> -->
+<form ngForm #myForm="ngForm" (ngSubmit)="addUser(myForm)">
+  <div class="example-container">
+    <mat-card class="register-card">
+      <mat-card-header>
+        <mat-card-title>טופס הרשמה</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <mat-label>שם משתמש</mat-label>
+          <input matInput name="username" ngModel #usernameModel="ngModel" pattern="^[a-zA-Zא-ת\s]+$" required>
+          <mat-error *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched)">
+            שם משתמש לא תקין
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>מייל</mat-label>
+          <input matInput [(ngModel)]="state.email" name="email" placeholder="pat@example.com"
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$"
+            required>
+          <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+            מייל לא חוקי
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>סיסמא</mat-label>
+          <input matInput name="password" minlength="4" maxlength="20" pattern="(?=.*[a-zA-Z])(?=.*[0-9]).+$"
+            [(ngModel)]="state.password" #passwordModel="ngModel" required>
+          <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+            סיסמא לא תקינה
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>כתובת</mat-label>
+          <input matInput name="address" pattern="^[a-zA-Zא-ת0-9\s]+$" ngModel #addressModel="ngModel" required>
+          <mat-error *ngIf="addressModel.invalid && (addressModel.dirty || addressModel.touched)">
+            כתובת לא תקינה
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button style="margin-right: auto;" color="primary" type="submit" [disabled]="myForm.invalid">
+          הרשמה
+        </button>
+      </mat-card-actions>
+      <div *ngIf="isOk" style="color: red; text-align: left;">משתמש כבר קיים במערכת</div>
+    </mat-card>
+  </div>
+</form>
 

@@ -1,11 +1,143 @@
-.example-card {
-    // max-width: 350px;
-    width: 385px;
-    border: black solid 5px;
+// .example-card {
+//     // max-width: 350px;
+//     width: 385px;
+//    height: 100%;
+    
    
-  }
+//   }
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
+//   .example-header-image {
+//     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+//     background-size: cover;
+//   }
+//   .flip-card {
+//     background-color: transparent;
+//     width: 386px;
+//     height: 450px;
+//     perspective: 1000px;
+ 
+//   }
+  
+//   .flip-card-inner {
+//     position: relative;
+//     width: 100%;
+//     height: 100%;
+//     text-align: center;
+//     transition: transform 0.6s;
+//     transform-style: preserve-3d;
+//     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    
+//   }
+  
+//   .flip-card:hover .flip-card-inner {
+//     transform: rotateY(180deg);
+//   }
+  
+//   .flip-card-front, .flip-card-back {
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     -webkit-backface-visibility: hidden;
+//     backface-visibility: hidden;
+//   }
+  
+//   .flip-card-front {
+//     background-color: #bbb;
+//     color: black;
+//   }
+  
+//   .flip-card-back {
+//     background-color:gray ;
+//     color: rgb(19, 249, 237);
+//     transform: rotateY(180deg);
+//     border-radius: 5px;
+//   }
+.flip-card {
+  background-color: transparent;
+  width: 300px; /* הגדרה מחדש של הרוחב */
+  height: 350px; /* הגדרה מחדש של הגובה */
+  perspective: 1000px;
+  
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  
+}
+
+.flip-card-front {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+}
+
+.flip-card-back {
+  background-color: gray;
+  color: rgb(19, 249, 237);
+  transform: rotateY(180deg);
+  border-radius: 4px;
+}
+
+.example-card {
+  width: 100%; /* הכרטיס תופס את כל הרוחב של הקונטיינר */
+  height: auto; /* גובה אוטומטי לפי תוכן */
+background-color: var(--mdc-elevated-card-container-color);
+  
+}
+.rtl-text {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+}
+.mat-mdc-card-header {
+  /* display: flex; */
+  padding: 16px 16px 0;
+  display: inline;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+// .mat-mdc-card {
+//    border-radius: var(--mdc-elevated-card-container-shape); 
+//   background-color: var(--mdc-elevated-card-container-color);
+//    border-width: 0;
+//    border-style: solid;
+//    border-color: var(--mdc-elevated-card-container-color);
+//    box-shadow: var(--mdc-elevated-card-container-elevation);
+// }
+
+
+// .mat-mdc-card {
+//   border-radius: 0 !important;
+//   background-color: initial !important;
+//   border-width: initial !important;
+//   border-style: initial !important;
+//   border-color: initial;
+//   box-shadow: initial;
+// }
+// .mat-mdc-card {
+//     position: relative;
+//     border-radius: 10px;
+// }
+
+
+

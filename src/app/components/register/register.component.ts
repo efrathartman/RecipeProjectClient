@@ -10,11 +10,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../shared/services/user.service';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule,MatFormFieldModule, MatInputModule, FormsModule,MatIconModule,MatButtonModule,MatDividerModule,CommonModule],
+  imports: [FormsModule,MatFormFieldModule, MatInputModule, FormsModule,MatIconModule,MatButtonModule,MatDividerModule,CommonModule,MatCardActions,MatCardContent,MatCardTitle,MatCardHeader,MatCard],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -23,14 +24,15 @@ export class RegisterComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$")]);
   password = new FormControl('',[
     Validators.required,
+    Validators.pattern('^(?=.*[A-z])(?=.*[0-9])'),
     Validators.minLength(4),
-    Validators.maxLength(10),
-    Validators.pattern('^(?=.*[A-z])(?=.*[0-9])')
+    Validators.maxLength(20),
   ]);
 
   errorMessage = '';
   errorPassword='סיסמא'
   erroruser='';
+  isOk:boolean=false;
   private userService=inject(UserService);
   // @Input()
   constructor(private server:UserService,private router: Router,private route: ActivatedRoute) {
@@ -55,6 +57,7 @@ export class RegisterComponent implements OnInit {
   },(error)=>{
     this.erroruser="המשתמש כבר קיים במערכת";
     console.log("error",error);
+    this.isOk=true;
     
   }
   )

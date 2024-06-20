@@ -1,7 +1,7 @@
-<p>recipe-form works!</p>
 
-    <form class="example-form" [formGroup]="recipeForm" (ngSubmit)="addRecipe()">
-    <mat-form-field class="example-full-width">
+    <form class="example-form" [formGroup]="recipeForm" (ngSubmit)="addRecipe()"> 
+      <h3 style="text-align: right;">מתכון חדש</h3>
+    <mat-form-field class="example-full-width" style="width: 50%;">
         <mat-label> שם המתכון</mat-label>
         <input matInput type="text"  formControlName="recipename">
         <mat-error *ngIf="recipeForm.controls['recipename'].hasError('required')">שדה חובה</mat-error>  
@@ -18,7 +18,7 @@
         <mat-error *ngIf="recipeForm.controls['recipename'].hasError('maxlength')"> מקיסמום 20 תווים </mat-error>
         <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות בלבד</mat-error>
       </mat-form-field>
-      <mat-form-field floatLabel="always" >
+      <mat-form-field floatLabel="always" style="margin-left: 20px;">
         <mat-label>זמן הכנה</mat-label>
         <input matInput type="number" class="example-right-align" placeholder="0" formControlName="timeOfMinutes">
         <mat-error *ngIf="recipeForm.controls['timeOfMinutes'].hasError('required')">
@@ -69,7 +69,7 @@
         </div>
         <button type="button" (click)="addLayer()" mat-flat-button color="primary">שכבה נוספת </button>
     </div>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width" style="width: 50%; margin-top: 20px;">
         <mat-label> תמונת מתכון</mat-label>
         <input matInput type="text" formControlName="img">
         <mat-error *ngIf="recipeForm.controls['img'].hasError('required')">
@@ -108,12 +108,12 @@
       }
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width" style="width: 50%;margin-right: 20px;">
         <mat-label> אחר</mat-label>
         <input matInput type="text" formControlName="newCategory">
         <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות ומספרים בלבד</mat-error>
       </mat-form-field>
-      <button mat-flat-button color="accent">Accent</button>
-      
+      <br/>
+      <button class="submit-button" mat-flat-button color="accent" >אישור</button>
     </form>
 

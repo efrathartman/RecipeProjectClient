@@ -18,7 +18,7 @@ export class StarDirective implements OnChanges {
   }
 
   private updateStars() {
-    this.el.nativeElement.innerHTML = '★'.repeat(this.starCount);
+    this.el.nativeElement.innerHTML =  '★'.repeat(this.starCount)+ "  דרגת קושי" ;
   }
 
 

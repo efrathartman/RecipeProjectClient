@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<!-- <mat-card class="example-card" [title]="recipe.recipename">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{recipe.recipename}}</mat-card-title>
@@ -15,4 +15,31 @@
      
     </mat-card-actions>
   </mat-card>
+   -->
+   <div class="flip-card" >
+    <div class="flip-card-inner">
+      <div class="flip-card-front" >
+        <mat-card class="example-card"  [title]="recipe.recipename">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <mat-card-title class="rtl-text" >{{recipe.recipename}}</mat-card-title>
+      
+          </mat-card-header>
+        <!-- <p style="text-align: right; margin-right: 22px;">{{recipe.timeOfMinutes | preparationTime}}</p> -->
+          <img mat-card-image  style="height: 270px;margin-top: 11%; " src={{recipe.img}} alt="recipe_img">
+<!--        
+          <mat-card-actions>
+           
+          </mat-card-actions> -->
+        </mat-card>
+      </div>
+      <div class="flip-card-back">
+        <h1 style="margin-top: 20%;">{{recipe.recipename}}</h1> 
+        <p>{{recipe.description}}</p> 
+       
+        <button *ngIf="userService.token" style="margin-top: 20%;" mat-button  (click)="moreDetails(recipe._id)">עוד פרטים</button>
+        <p> ❤️ המתכונים שלנו</p>
+      </div>
+    </div>
+  </div>
   

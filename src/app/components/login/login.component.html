@@ -1,4 +1,4 @@
-<form ngForm #myForm="ngForm" (ngSubmit)="login(myForm)">
+<!-- <form ngForm #myForm="ngForm" (ngSubmit)="login(myForm)">
 <div class="example-container">
     <mat-form-field>
       <mat-label>מייל</mat-label>
@@ -36,11 +36,38 @@
   <button mat-raised-button style="margin-right: 10px;" color="primary" (click)="register(myForm)">הרשמה</button>
 </form>
   
-  
-
-  
-
-  
-
+   -->
+   <form ngForm #myForm="ngForm" (ngSubmit)="login(myForm)">
+    <div class="example-container">
+      <mat-card class="login-card">
+        <mat-card-header>
+          <mat-card-title>התחברות</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field appearance="fill">
+            <mat-label>מייל</mat-label>
+            <input matInput ngModel #emailModel="ngModel" name="email" placeholder="pat@example.com" pattern=".+@.+\..+" required>
+            <mat-error *ngIf="emailModel.invalid">{{errorMessage}}</mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="fill">
+            <mat-label>סיסמה</mat-label>
+            <input matInput ngModel #passwordModel="ngModel" name="password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">התחברות</button>
+          <button mat-raised-button color="accent" (click)="register(myForm)">הרשמה</button>
+        </mat-card-actions>
+        <div *ngIf="errorMessage">
+          <mat-error>{{erroruser}}</mat-error>
+        </div>
+        <div *ngIf="isOk" style="color: red; text-align: left;">משתמש לא קיים במערכת</div>
+      </mat-card>
+    </div>
+  </form>
   
   

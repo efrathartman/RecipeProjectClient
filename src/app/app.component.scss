@@ -1,4 +1,89 @@
 .mat-tab-group {
-    margin-bottom: 48px;
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-tab-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav-link, .transparent-button {
+  text-decoration: none;
+  color: rgb(19, 249, 237);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.transparent-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  
+  &:hover,
+  &:focus {
+    outline: none;
+    color: #13e4de; /* צבע שונה כאשר מרחפים מעל הכפתור */
   }
- 
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.9); /* רקע לבן שקוף */
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* צל קל */
+}
+
+.profile-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(19, 249, 237); /* צבע הטקסט */
+}
+
+.profile-initial {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* להפוך את התיבה לעגולה */
+  background-color: rgb(19, 249, 237); /* צבע רקע */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white; /* צבע טקסט */
+  margin-top: 5px;
+}
+
+.mat-tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 3px;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+.profile-container:hover .mat-tooltip {
+  visibility: visible !important;
+  opacity: 1 !important;
+}

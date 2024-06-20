@@ -13,13 +13,14 @@ import { CommonModule } from '@angular/common';
 import { state } from '@angular/animations';
 import { User } from '../../shared/models/user';
 import { UserService } from '../../shared/services/user.service';
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule,MatIconModule,MatButtonModule,MatDividerModule,CommonModule],
+  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule,MatIconModule,MatButtonModule,MatDividerModule,CommonModule,MatCardActions,MatCardContent,MatCardTitle,MatCardHeader,MatCard],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -32,7 +33,7 @@ export class LoginComponent {
   errorMessage = '';
   erroruser='';
   private userService=inject(UserService);
-
+  isOk:boolean=false;
   constructor(private server: UserService,private router:Router) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
@@ -51,13 +52,23 @@ export class LoginComponent {
     .subscribe((data)=>{
       console.log(data);
       this.userService.token=data.token;
+      this.userService.nameuser=data.user?.username??null;
+      // this.userService.userid=data.user?.id??null
+      this.userService.userid = data.user?.id?.toString() ?? null;
+     console.log(data.user,"vvv");
+
       if (this.userService.token) {
-    
+         
         this.router.navigate(['/allrecipe']);
+
+    }
+    else{
+      this.isOk=true
     }
 
   },(error)=>{
     this.erroruser="המשתמש לא קיים במערכת";
+    this.isOk=true
   })
   }
 

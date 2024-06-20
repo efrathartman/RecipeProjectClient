@@ -13,25 +13,36 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { UserService } from '../../shared/services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-all-recipes',
   standalone: true,
-  imports: [RecipeComponent,MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule,MatPaginatorModule,MatGridListModule,MatCardModule],
+  imports: [RecipeComponent,MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule,MatPaginatorModule,MatGridListModule,MatCardModule,CommonModule],
   templateUrl: './all-recipes.component.html',
   styleUrl: './all-recipes.component.scss'
 })
 export class AllRecipesComponent implements OnInit{
-
+private userService=inject(UserService)
  private categoryService=inject(CategoryService)
   private recipeService = inject(RecipeService);
   currentRecipes: Recipe[] = [];
+isVisible:boolean=true;
   currentPage: number = 1;
   perPage: number = 6;
-
+  myRecipes:Recipe[]=[];
   recipes:Recipe[]=[];
   list: any[] = [];
+ x:any={}
+ y:string='';
+ isMyRecipes:boolean=false;
   // list2: any[] = [];
   categories: Category[] = [];
+  constructor(private route:ActivatedRoute)
+  {
+
+  }
   cancelFilter()
   {
     this.recipeService.getAllRecipes(this.currentPage, this.perPage).subscribe((data) => {
@@ -40,11 +51,13 @@ export class AllRecipesComponent implements OnInit{
     
       console.log(data);
       });
-  
+      this.isVisible=true;
         return this.list;
+        
   }
   PreperTime(time:number):Recipe[]
   {
+    this.isVisible=false;
      this.recipeService.getDetailsByTime(time).subscribe((data)=>{
      this.currentRecipes=data as any[]; 
      })
@@ -52,19 +65,34 @@ export class AllRecipesComponent implements OnInit{
   }
 
   findCategory(category: string |undefined) {
+    this.isVisible=false;
     if(category===undefined)
       {
         return;
       }
-    this.categoryService.getAllCategoryByRecipes(category).subscribe((data) => {
-    this.recipes =  data?.recipesOfCategory as any ;
-    this.currentRecipes=this.recipes
-    console.log(data.recipesOfCategory);
-    })
+      
+  // console.log("קטגוריה:", category);
+  // console.log("מתכונים לפני סינון:", this.currentRecipes);
+  //     this.currentRecipes = this.currentRecipesWithout.filter(x => x.categories?.[0]?.categoryName == category);
+  //   this.categoryService.getAllCategoryByRecipes(category).subscribe((data) => {
+  //   this.recipes =  data?.recipesOfCategory as any ;
+  //   this.currentRecipes=this.recipes;
+  //   console.log(data.recipesOfCategory);
+  //  })
+  //  console.log(this.currentRecipes,"acshav");
+  this.recipeService.getAllRecipes(this.currentPage, this.perPage,true).subscribe((data) => {
+    this.currentRecipes = data as any[];
+    this.list = data as any[];
+    this.currentRecipes=this.currentRecipes.filter(x=>x.categories?.[0].categoryName==category);
+    console.log(data);
+    });
+      return this.list;
   }
+ 
   chooseOfLevel(y:Number):Recipe[]
   {
-    this.recipeService.getAllRecipes(this.currentPage, this.perPage).subscribe((data) => {
+    this.isVisible=false;
+    this.recipeService.getAllRecipes(this.currentPage, this.perPage,true).subscribe((data) => {
     this.currentRecipes = data as any[];
     this.list = data as any[];
     this.currentRecipes=this.currentRecipes.filter(x=>x.level===y);
@@ -84,7 +112,15 @@ export class AllRecipesComponent implements OnInit{
     this.loadRecipes();
 }
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.isMyRecipes = params['myRecipes'] === 'true';
+    });
     this.loadRecipes();
+    // this.recipeService.getAllRecipesWithout().subscribe((data) => {
+    //   // this.list = data;
+    //   this.currentRecipesWithout = data as any[];
+    //   console.log(data,"efrat2");
+    // });
     this.recipeService.getAllRecipes(this.currentPage, this.perPage).subscribe((data) => {
       // this.list = data;
       this.currentRecipes = data as any[];
@@ -94,5 +130,23 @@ export class AllRecipesComponent implements OnInit{
       this.categories = data as any[];
       console.log(data);
     });
+    this.userService.isEnabelad().subscribe((data)=>{
+      console.log(data,"dataer");
+      this.x=data.userId;
+      this.y=this.x
+      console.log(this.y.toString(),"y");
+      console.log(this.x,"x"); 
+     
+    
+    this.recipeService.getRecipesByUseId(this.y).subscribe((data)=>{
+      console.log(this.userService.userid,"userid");
+      
+      this.myRecipes=data as any[]
+      console.log(this.myRecipes,"my");
+    })
+    })
+  }
+  trackByRecipe(index: number, recipe: Recipe): string|number {
+    return recipe._id ? recipe._id : `${index}`;
   }
 }

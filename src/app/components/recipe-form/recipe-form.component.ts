@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { STRING_TYPE } from '@angular/compiler';
 import { Component, OnInit, inject } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, NgForm, NgModelGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,12 +17,13 @@ import { RecipeService } from '../../shared/services/recipe.service';
 import { Recipe } from '../../shared/models/recipe';
 import { User } from '../../shared/models/user';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardActions } from '@angular/material/card';
 
 
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,FormsModule,FormsModule, MatFormFieldModule, MatInputModule,MatSelectModule,MatCheckboxModule,MatButtonModule, MatDividerModule, MatIconModule,MatSnackBarModule],
+  imports: [ReactiveFormsModule,CommonModule,FormsModule,FormsModule, MatFormFieldModule, MatInputModule,MatSelectModule,MatCheckboxModule,MatButtonModule, MatDividerModule, MatIconModule,MatSnackBarModule,MatFormField,MatFormFieldModule,MatCardActions],
   templateUrl: './recipe-form.component.html',
   styleUrl: './recipe-form.component.scss'
 })
