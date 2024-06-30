@@ -34,11 +34,11 @@
         </mat-card>
       </div>
       <div class="flip-card-back">
-        <h1 style="margin-top: 20%;">{{recipe.recipename}}</h1> 
+        <h1 style="margin-top: 15%;">{{recipe.recipename}}</h1> 
         <p>{{recipe.description}}</p> 
-       
-        <button *ngIf="userService.token" style="margin-top: 20%;" mat-button  (click)="moreDetails(recipe._id)">עוד פרטים</button>
-        <p> ❤️ המתכונים שלנו</p>
+ 
+        <button *ngIf="userService.token" style="margin-top: 13%;" mat-button  (click)="moreDetails(recipe._id)">עוד פרטים</button>
+        <p > ❤️ המתכונים שלנו</p>
       </div>
     </div>
   </div>

@@ -17,16 +17,16 @@
 <div class="select-container">
 <mat-form-field  *ngIf="!isMyRecipes">
     <mat-label >קטגוריה</mat-label>
-    <mat-select class="transparent-select">
+    <mat-select class="transparent-select" [(ngModel)]="selectedCategory">
       @for (c of categories; track c) {
-        <mat-option [value]="c.description" (click)="findCategory(c.description)">{{c.description}}</mat-option>
+        <mat-option [value]="c.description" (click)="findCategory(getStringValue(c.description))">{{c.description}}</mat-option>
       }
     </mat-select>
   </mat-form-field>
   
   <mat-form-field   *ngIf="!isMyRecipes">
     <mat-label>דרגת קושי</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="selectedLevel">
         <mat-option [value]="1" (click)="chooseOfLevel(1)">1</mat-option>
         <mat-option [value]="2" (click)="chooseOfLevel(2)" >2</mat-option>
         <mat-option [value]="3" (click)="chooseOfLevel(3)">3</mat-option>
@@ -36,17 +36,17 @@
   </mat-form-field>
   <mat-form-field   *ngIf="!isMyRecipes">
     <mat-label> זמן הכנה</mat-label>
-    <mat-select  >
-        <mat-option  (click)="PreperTime(15)">15 דקות</mat-option>
-        <mat-option  (click)="PreperTime(30)" >30 דקות</mat-option>
-        <mat-option  (click)="PreperTime(60)">שעה</mat-option>
-        <mat-option (click)="PreperTime(75)">שעה ורבע</mat-option>
-        <mat-option  (click)="PreperTime(90)">שעה וחצי</mat-option>
+    <mat-select  [(ngModel)]="selectedPrepTime">
+        <mat-option  [value]="15" (click)="PreperTime(15)">15 דקות</mat-option>
+        <mat-option [value]="30" (click)="PreperTime(30)" >30 דקות</mat-option>
+        <mat-option [value]="60" (click)="PreperTime(60)">שעה</mat-option>
+        <mat-option [value]="75" (click)="PreperTime(75)">שעה ורבע</mat-option>
+        <mat-option [value]="90" (click)="PreperTime(90)">שעה וחצי</mat-option>
     </mat-select>
   </mat-form-field>
   
-      <button   *ngIf="!isMyRecipes" mat-raised-button color="primary" (click)="cancelFilter()">בטל סינונים</button>
- 
+      <button mat-raised-button color="accent" style="background-color: #3a3a3a; color:rgb(19, 249, 237); ;" *ngIf="!isMyRecipes" mat-raised-button color="primary" (click)="cancelFilter()">בטל סינונים</button>
+   
 </div>
 <!-- @for(c of list; track c._id){
     <div>{{c.recipename}}</div>
@@ -54,8 +54,8 @@
 } -->
 
 </div>
-<div style="margin-right: 35pc">
-<mat-paginator *ngIf="isVisible" style="background-color:#3a3a3a;align-items:first baseline; width: 100%;color:rgb(19, 249, 237); ;" [length]="100"
+<div style="margin-right: 35pc;">
+<mat-paginator  *ngIf="isVisible && !isMyRecipes" style="background-color:#3a3a3a;align-items:first baseline; width: 100%;color:rgb(19, 249, 237); " [length]="24"
               [pageSize]="6"
               [pageSizeOptions]="[3, 6, 9]"
               (page)="onPageChange($event)"

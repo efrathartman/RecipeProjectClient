@@ -112,7 +112,7 @@
         <mat-form-field class="example-full-width">
           <mat-label>שם משתמש</mat-label>
           <input matInput name="username" ngModel #usernameModel="ngModel" pattern="^[a-zA-Zא-ת\s]+$" required>
-          <mat-error *ngIf="usernameModel.invalid && (usernameModel.dirty || usernameModel.touched)">
+          <mat-error *ngIf="usernameModel.invalid ">
             שם משתמש לא תקין
           </mat-error>
         </mat-form-field>
@@ -122,7 +122,7 @@
           <input matInput [(ngModel)]="state.email" name="email" placeholder="pat@example.com"
             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$"
             required>
-          <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+          <mat-error *ngIf="email.invalid ">
             מייל לא חוקי
           </mat-error>
         </mat-form-field>
@@ -131,15 +131,15 @@
           <mat-label>סיסמא</mat-label>
           <input matInput name="password" minlength="4" maxlength="20" pattern="(?=.*[a-zA-Z])(?=.*[0-9]).+$"
             [(ngModel)]="state.password" #passwordModel="ngModel" required>
-          <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
-            סיסמא לא תקינה
+          <mat-error *ngIf="password.invalid ">
+            סיסמא חייבת להכיל ספרה ואתיות באנגלית בלבד 
           </mat-error>
         </mat-form-field>
         <br />
         <mat-form-field class="example-full-width">
           <mat-label>כתובת</mat-label>
           <input matInput name="address" pattern="^[a-zA-Zא-ת0-9\s]+$" ngModel #addressModel="ngModel" required>
-          <mat-error *ngIf="addressModel.invalid && (addressModel.dirty || addressModel.touched)">
+          <mat-error *ngIf="addressModel.invalid ">
             כתובת לא תקינה
           </mat-error>
         </mat-form-field>

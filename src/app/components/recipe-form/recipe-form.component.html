@@ -7,7 +7,7 @@
         <mat-error *ngIf="recipeForm.controls['recipename'].hasError('required')">שדה חובה</mat-error>  
         <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות בלבד</mat-error>
         <mat-error *ngIf="recipeForm.controls['recipename'].hasError('minlength')">יש להזין שם תקין</mat-error>
-        <mat-error *ngIf="recipeForm.controls['recipename'].hasError('maxlength')"> מקיסמום 20 תווים </mat-error>
+        <mat-error *ngIf="recipeForm.controls['recipename'].hasError('maxlength')"> מקיסמום 30 תווים </mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <mat-label>תאור המתכון</mat-label>
@@ -15,8 +15,8 @@
         <mat-error *ngIf="recipeForm.controls['description'].hasError('required')">
           שדה חובה
         </mat-error>
-        <mat-error *ngIf="recipeForm.controls['recipename'].hasError('maxlength')"> מקיסמום 20 תווים </mat-error>
-        <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות בלבד</mat-error>
+        <mat-error *ngIf="recipeForm.controls['description'].hasError('maxlength')"> מקיסמום 600 תווים </mat-error>
+        <!-- <mat-error *ngIf="recipeForm.controls['description'].hasError('pattern')">יש להזין אותיות בלבד</mat-error> -->
       </mat-form-field>
       <mat-form-field floatLabel="always" style="margin-left: 20px;">
         <mat-label>זמן הכנה</mat-label>
@@ -51,9 +51,9 @@
                     <mat-error *ngIf="recipeForm.controls['description'].hasError('required')">
                       שדה חובה
                     </mat-error>
-                    <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות  בלבד</mat-error>
-                    <mat-error *ngIf="recipeForm.controls['recipename'].hasError('minlength')">יש להזין שם תקין</mat-error>
-                    <mat-error *ngIf="recipeForm.controls['recipename'].hasError('maxlength')"> מקיסמום 20 תווים </mat-error>
+                    <!-- <mat-error *ngIf="recipeForm.controls['description'].hasError('pattern')">יש להזין אותיות  בלבד</mat-error> -->
+                    <!-- <mat-error *ngIf="recipeForm.controls['description'].hasError('minlength')">יש להזין שם תקין</mat-error>
+                    <mat-error *ngIf="recipeForm.controls['description'].hasError('maxlength')"> מקיסמום 50 תווים </mat-error> -->
                 </mat-form-field>
             </div>
 
@@ -62,7 +62,7 @@
                     <mat-form-field>
                         <mat-label>הוסף מוצר</mat-label>
                         <input matInput (blur)="addingredient(layerIndex)" [formControlName]="ingredientIndex">
-                        <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות ומספרים בלבד</mat-error>
+                        <!-- <mat-error *ngIf="recipeForm.controls['ingredients'].hasError('pattern')">יש להזין אותיות ומספרים בלבד</mat-error> -->
                     </mat-form-field>
                 </div>
             </div>
@@ -87,7 +87,7 @@
         <mat-error *ngIf="recipeForm.controls['instructions'].hasError('required')">
           שדה חובה
         </mat-error>
-        <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות בלבד</mat-error>
+        <!-- <mat-error *ngIf="recipeForm.controls['instructions'].hasError('pattern')">יש להזין אותיות בלבד</mat-error> -->
       </mat-form-field>
       <section class="example-full-width">
         <mat-checkbox class="example-margin" formControlName="isPrivate">האם אתה רוצה שהמתכון יהיה פרטי</mat-checkbox>
@@ -111,7 +111,7 @@
       <mat-form-field class="example-full-width" style="width: 50%;margin-right: 20px;">
         <mat-label> אחר</mat-label>
         <input matInput type="text" formControlName="newCategory">
-        <mat-error *ngIf="recipeForm.controls['recipename'].hasError('pattern')">יש להזין אותיות ומספרים בלבד</mat-error>
+        <mat-error *ngIf="recipeForm.controls['newCategory'].hasError('pattern')">יש להזין אותיות  בלבד</mat-error>
       </mat-form-field>
       <br/>
       <button class="submit-button" mat-flat-button color="accent" >אישור</button>

@@ -18,6 +18,8 @@ import { Recipe } from '../../shared/models/recipe';
 import { User } from '../../shared/models/user';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardActions } from '@angular/material/card';
+import { routes } from '../../app.routes';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -41,18 +43,18 @@ export class RecipeFormComponent implements OnInit{
     event.stopPropagation();
   }
 
-  constructor(private fb:FormBuilder)
+  constructor(private fb:FormBuilder,private router:Router)
   {
     this.recipeForm=fb.group({
-      recipename:fb.control('',[Validators.required,Validators.maxLength(20),Validators.minLength(2),Validators.pattern("^[a-zA-Zא-ת\\s]*$")]),
-      description:fb.control('',[Validators.required,Validators.maxLength(100),Validators.pattern("^[a-zA-Zא-ת\\s]*$")]),
+      recipename:fb.control('',[Validators.required,Validators.maxLength(30),Validators.minLength(2),Validators.pattern("^[a-zA-Zא-ת\\s]*$")]),
+      description:fb.control('',[Validators.required,Validators.maxLength(600),Validators.pattern("^[a-zA-Zא-ת\\s0-9!@#$%'^&*(),.-]*$")]),
       timeOfMinutes:fb.control('',[Validators.required,Validators.pattern("^[0-9]*$")]),
       level:fb.control('',[Validators.required,Validators.pattern("^[0-9]*$")]),
       layersOfCake:fb.array([]),
-      instructions:fb.control('',[Validators.required,Validators.pattern("^[a-zA-Z1-9א-ת\\s]*$"),Validators.maxLength(500)]),
+      instructions:fb.control('',[Validators.required,Validators.pattern("^[a-zA-Zא-ת\\s0-9!@#$%'^&*(),.-]*$")]),
       img:fb.control('',Validators.required),
       isPrivate:fb.control('',Validators.required),
-      categories:fb.control('',Validators.required),
+      categories:fb.control('',),
       newCategory:fb.control('',Validators.pattern("^[a-zA-Zא-ת\\s]*$"))
     })
     this.addLayer();
@@ -69,9 +71,9 @@ export class RecipeFormComponent implements OnInit{
     console.log("addLayer");
     this.layersCake.push(
       this.fb.group({
-        description: this.fb.control('', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern("^[a-zA-Zא-ת\\s]+$")]),
+        description: this.fb.control('', [Validators.required, Validators.minLength(2), Validators.maxLength(50), Validators.pattern("^[a-zA-Zא-ת1-9\\s]*$")]),
         ingredients: this.fb.array([
-          this.fb.control('', [Validators.required,Validators.pattern("^[a-zA-Z1-9א-ת\\s]+$")]),
+          this.fb.control('', [Validators.required,Validators.pattern("^[a-zA-Zא-ת\\s0-9!@#$%'^&*(),.-]*$")]),
         ]),
       })
     );
@@ -139,6 +141,7 @@ export class RecipeFormComponent implements OnInit{
         next:(x)=>{
           console.log('add',x);
           this.openSnackBar('!המתכון הוסף בהצלחה', 'סגור');
+          this.router.navigate(['/allrecipe']);
   
     },
       error:(err)=>{

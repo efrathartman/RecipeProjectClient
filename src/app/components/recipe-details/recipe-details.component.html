@@ -150,6 +150,7 @@
   <div class="recipe-card-container">
     <mat-card class="recipe-card">
       <img mat-card-image [src]="foundRecipe.img" alt="img of recipe">
+     
       <div class="recipe-card-content">
         <mat-card-header class="recipe-card-title">
      
@@ -161,12 +162,12 @@
         </mat-card-header>
         <br/>
         <mat-card-content>
-          <mat-list-item>{{foundRecipe.description}}: תאור</mat-list-item>
+          <mat-list-item> תאור : {{foundRecipe.description}}</mat-list-item>
           <br/>
           <mat-list-item>{{foundRecipe.timeOfMinutes | preparationTime}}</mat-list-item>
           
           <div *ngFor="let l of foundRecipe.layersOfCake">
-            <p>{{l.description}}: תאור שכבה</p>
+            <p> תאור שכבה : {{l.description}}</p>
             : רכיבים
             <br/>
             <div *ngFor="let i of l.ingredients">
@@ -175,7 +176,7 @@
             </div>
           </div>
           <br/>
-          <mat-list-item>{{foundRecipe.instructions}}: הוראות</mat-list-item>
+          <mat-list-item>הוראות : {{foundRecipe.instructions}}</mat-list-item>
           <br/>
           <mat-list-item [appStar]="foundRecipe.level ?? 0"></mat-list-item>
           <br/>
@@ -189,7 +190,7 @@
           <br/>
           <mat-list-item>{{foundRecipe.dataAdd}}: הועלה בתאריך</mat-list-item>
         </mat-card-content>
-        <button *ngIf="isEnabaled" class="delete-button" (click)="deleteRecipe(foundRecipe._id)">מחיקה</button>
+        <button  mat-raised-button color="accent" *ngIf="isEnabaled" class="delete-button" (click)="deleteRecipe(foundRecipe._id)">מחיקה</button>
       </div>
     </mat-card>
   </div>

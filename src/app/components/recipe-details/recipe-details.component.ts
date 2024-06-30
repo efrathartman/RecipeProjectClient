@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../shared/services/recipe.service';
 import { Recipe } from '../../shared/models/recipe';
 import { PreparationTimePipe } from '../../shared/pipe/preparation-time.pipe';
@@ -12,6 +12,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { UserService } from '../../shared/services/user.service';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-recipe-details',
@@ -28,7 +29,7 @@ export class RecipeDetailsComponent implements OnInit{
   newuser:any={}
   
    starList:number[] = [];
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute,private router:Router) { 
     this.id = this.route.snapshot.params['id'];
     console.log(this.id,"eee");
     
@@ -36,6 +37,12 @@ export class RecipeDetailsComponent implements OnInit{
 
   private recipeService=inject(RecipeService)
  public userService=inject(UserService)
+ private snackBar = inject(MatSnackBar);
+ hide=true
+ clickEvent(event: MouseEvent) {
+   this.hide = !this.hide;
+   event.stopPropagation();
+ }
   ngOnInit()
   {
     
@@ -98,7 +105,9 @@ export class RecipeDetailsComponent implements OnInit{
   
   this.recipeService.deleteRecipe(id).subscribe(
     response => {
-      console.log('Recipe deleted successfully', response);
+      console.log('Recipe deleted successfully', response); 
+        this.openSnackBar('!המתכון הוסר בהצלחה', 'סגור');
+        this.router.navigate(['/allrecipe']);
     },
     error => {
       console.error('Error deleting recipe', error);
@@ -106,6 +115,10 @@ export class RecipeDetailsComponent implements OnInit{
   );
   }
 
-  
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 10000, 
+    });
+  }
 
 }

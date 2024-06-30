@@ -47,8 +47,9 @@
           <mat-form-field appearance="fill">
             <mat-label>מייל</mat-label>
             <input matInput ngModel #emailModel="ngModel" name="email" placeholder="pat@example.com" pattern=".+@.+\..+" required>
-            <mat-error *ngIf="emailModel.invalid">{{errorMessage}}</mat-error>
+            <mat-error *ngIf="emailModel.invalid">מייל לא חוקי</mat-error>
           </mat-form-field>
+          <br />
           <br />
           <mat-form-field appearance="fill">
             <mat-label>סיסמה</mat-label>

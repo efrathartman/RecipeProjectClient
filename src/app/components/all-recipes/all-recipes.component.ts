@@ -16,10 +16,11 @@ import { MatCardModule } from '@angular/material/card';
 import { UserService } from '../../shared/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-all-recipes',
   standalone: true,
-  imports: [RecipeComponent,MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule,MatPaginatorModule,MatGridListModule,MatCardModule,CommonModule],
+  imports: [RecipeComponent,MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule,MatPaginatorModule,MatGridListModule,MatCardModule,CommonModule,MatButtonModule],
   templateUrl: './all-recipes.component.html',
   styleUrl: './all-recipes.component.scss'
 })
@@ -39,12 +40,30 @@ isVisible:boolean=true;
  isMyRecipes:boolean=false;
   // list2: any[] = [];
   categories: Category[] = [];
+
+  itsMy: boolean = false;
+  selectedCategory: string | null=null;
+  selectedLevel: number | null=null;
+  selectedPrepTime: number|null=null;
+
   constructor(private route:ActivatedRoute)
   {
 
   }
+
+  getStringValue(value: any): string {
+    if (typeof value === 'string') {
+      return value;
+    } else {
+      return value.toString();
+    }
+  }
   cancelFilter()
   {
+    this.selectedCategory = null;
+    this.selectedLevel = null;
+    this.selectedPrepTime = null;
+    this.isVisible = true;
     this.recipeService.getAllRecipes(this.currentPage, this.perPage).subscribe((data) => {
       this.currentRecipes = data;
       this.list = data as any[];
@@ -55,21 +74,25 @@ isVisible:boolean=true;
         return this.list;
         
   }
-  PreperTime(time:number):Recipe[]
+  PreperTime(time:number|null):void
   {
     this.isVisible=false;
-     this.recipeService.getDetailsByTime(time).subscribe((data)=>{
-     this.currentRecipes=data as any[]; 
-     })
-     return this.currentRecipes
+    this.selectedPrepTime = time;
+    this.applyFilters();
+    //  this.recipeService.getDetailsByTime(time).subscribe((data)=>{
+    //  this.currentRecipes=data as any[]; 
+    //  })
+    //  return this.currentRecipes
   }
 
-  findCategory(category: string |undefined) {
+  findCategory(category: string |null):void {
     this.isVisible=false;
-    if(category===undefined)
-      {
-        return;
-      }
+    this.selectedCategory = category;
+    this.applyFilters();
+    // if(category===undefined)
+    //   {
+    //     return;
+    //   }
       
   // console.log("קטגוריה:", category);
   // console.log("מתכונים לפני סינון:", this.currentRecipes);
@@ -80,30 +103,33 @@ isVisible:boolean=true;
   //   console.log(data.recipesOfCategory);
   //  })
   //  console.log(this.currentRecipes,"acshav");
-  this.recipeService.getAllRecipes(this.currentPage, this.perPage,true).subscribe((data) => {
-    this.currentRecipes = data as any[];
-    this.list = data as any[];
-    this.currentRecipes=this.currentRecipes.filter(x=>x.categories?.[0].categoryName==category);
-    console.log(data);
-    });
-      return this.list;
-  }
+
+  // this.recipeService.getAllRecipes(this.currentPage, this.perPage,true).subscribe((data) => {
+  //   this.currentRecipes = data as any[];
+  //   this.list = data as any[];
+  //   this.currentRecipes=this.currentRecipes.filter(x=>x.categories?.[0].categoryName==category);
+  //   console.log(data);
+  //   });
+  //     return this.list;
+   }
  
-  chooseOfLevel(y:Number):Recipe[]
+  chooseOfLevel(y:number|null):void
   {
     this.isVisible=false;
-    this.recipeService.getAllRecipes(this.currentPage, this.perPage,true).subscribe((data) => {
-    this.currentRecipes = data as any[];
-    this.list = data as any[];
-    this.currentRecipes=this.currentRecipes.filter(x=>x.level===y);
-    console.log(data);
-    });
-      return this.list;
+    this.selectedLevel = y;
+    this.applyFilters();
+    // this.recipeService.getAllRecipes(this.currentPage, this.perPage,true).subscribe((data) => {
+    // this.currentRecipes = data as any[];
+    // this.list = data as any[];
+    // this.currentRecipes=this.currentRecipes.filter(x=>x.level===y);
+    // console.log(data);
+    // });
+    //   return this.list;
   }
   loadRecipes() {
     this.recipeService.getAllRecipes(this.currentPage, this.perPage).subscribe(recipes => {
         this.currentRecipes = recipes;
-        // this.list=recipes;
+      
     });
 }
   onPageChange(event: PageEvent) {
@@ -111,6 +137,20 @@ isVisible:boolean=true;
     this.perPage = event.pageSize;
     this.loadRecipes();
 }
+applyFilters(): void {
+  this.itsMy=true
+  this.recipeService.getAllRecipes(this.currentPage,this.perPage,true).subscribe((data) => {
+    this.currentRecipes = data.filter(recipe => {
+      const matchesCategory = this.selectedCategory ? recipe.categories?.some(category => category.categoryName === this.selectedCategory) : true;
+      const matchesTime = this.selectedPrepTime ? recipe.timeOfMinutes && recipe.timeOfMinutes <= this.selectedPrepTime : true;
+      const matchesLevel = this.selectedLevel ? recipe.level === this.selectedLevel : true; 
+      return matchesCategory && matchesTime && matchesLevel;
+      
+    });
+  });
+}
+
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.isMyRecipes = params['myRecipes'] === 'true';
@@ -149,4 +189,5 @@ isVisible:boolean=true;
   trackByRecipe(index: number, recipe: Recipe): string|number {
     return recipe._id ? recipe._id : `${index}`;
   }
+
 }
